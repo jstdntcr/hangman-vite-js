@@ -1,3 +1,3 @@
 export default{
-    base: "/hangman-game-js/",
+    base: "/hangman-vite-js/",
 }
