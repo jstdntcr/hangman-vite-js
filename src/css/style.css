@@ -39,7 +39,12 @@
     }
 
     .button-primary{
-        @apply bg-slate-200 dark:bg-indigo-500 hover:bg-slate-300 dark:hover:bg-indigo-600 rounded-md font-medium px-5 py-2 flex justify-center items-center;
+        @apply bg-slate-200 dark:bg-indigo-500 enabled:hover:bg-slate-300 enabled:dark:hover:bg-indigo-600 rounded-md font-medium px-5 py-2 flex
+         justify-center items-center disabled:opacity-20 disabled:cursor-not-allowed;
+    }
+
+    .button-secondary{
+        @apply border border-black rounded-md hover:bg-slate-100 dark:border-white dark:hover:bg-zinc-600;
     }
 
     .placeholders-wrapper{
@@ -64,5 +69,21 @@
 
     .logo-sm{
         @apply text-sm;
+    }
+
+    .result-header{
+        @apply text-2xl font-bold mt-4;
+    }
+
+    .win{
+        @apply text-lime-600;
+    }
+
+    .lose{
+        @apply text-red-600;
+    }
+
+    .result-word{
+        @apply font-medium uppercase;
     }
 }
