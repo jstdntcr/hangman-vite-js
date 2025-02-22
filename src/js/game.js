@@ -109,16 +109,36 @@ const stopGame = (status) => {
   document.getElementById("quit").remove();
 
   const word = sessionStorage.getItem("word");
+  let currentStreak = parseInt(sessionStorage.getItem("currentStreak"));
+  let winstreak = parseInt(localStorage.getItem("winstreak"));
+  const winstreakImage = document.getElementById("streak-image");
 
   if (status === "win") {
     document.getElementById("hangman-img").src = "images/hg-win.png";
     document.getElementById("game").innerHTML += `<h2 class="result-header win">You won!</h2>`;
-  } else if (status === "lose")
+    
+    // update streak
+    currentStreak += 1;
+    sessionStorage.setItem("currentStreak", currentStreak);
+    if (currentStreak > winstreak) {
+      document.getElementById("winstreak-counter").innerText = currentStreak;
+      localStorage.setItem("winstreak", currentStreak);
+    }
+  } else if (status === "lose"){
+
     document.getElementById("game").innerHTML += `<h2 class="result-header lose">You lost :(</h2>`;
+    currentStreak = 0;
+    sessionStorage.setItem("currentStreak", currentStreak);
+  }
   else if (status === "quit"){
+    currentStreak = 0;
+    sessionStorage.setItem("currentStreak", currentStreak);
     logoH1.classList.remove("logo-sm");
     document.getElementById("hangman-img").remove();
   }
+
+  if (winstreak > currentStreak) winstreakImage.classList.add("unactive-winstreak");
+  else if (winstreakImage.classList.contains("unactive-winstreak")) winstreakImage.classList.remove("unactive-winstreak");
 
   document.getElementById("game").innerHTML += `<p>The word was: <span class="result-word">${word}</span></p>
   <button id="play-again" class="button-primary px-5 py-2 mt-5">Play again</button>`

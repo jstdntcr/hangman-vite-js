@@ -1,7 +1,8 @@
 import "../css/style.css";
-import { darkModeHandle } from "./utils";
+import { darkModeHandle, winstreakHandle } from "./utils";
 import { startGame } from "./game";
 
+winstreakHandle();
 darkModeHandle();
 
 const startGameButton = document.getElementById("startGame");

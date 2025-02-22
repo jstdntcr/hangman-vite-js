@@ -86,4 +86,8 @@
     .result-word{
         @apply font-medium uppercase;
     }
+
+    .unactive-winstreak{
+        @apply grayscale;
+    }
 }
