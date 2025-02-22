@@ -1,3 +1,5 @@
+import { WORDS } from "./consts";
+
 export const darkModeHandle = () => {
   const darkModeSwitcher = document.getElementById("toggleDarkMode");
   const htmlElement = document.documentElement;

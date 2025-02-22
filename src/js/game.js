@@ -15,7 +15,7 @@ const createPlaceHolderHTML = () => {
     ""
   );
 
-  return `<div id="placeholders" class="placeholders-wrapper">${placeholdersHTML}</div>`;
+  return `<div id="placeholders" class="placeholders-wrapper pt-3">${placeholdersHTML}</div>`;
 };
 
 const createKeyboard = () => {
@@ -71,13 +71,19 @@ const checkLetter = (letter) => {
 };
 
 export const startGame = () => {
+  if (document.getElementById("topic-name") != null) document.getElementById("topic-name").remove();
   winCount = 0;
   triesLeft = 10;
   logoH1.classList.add("logo-sm");
 
-  const randomIndex = Math.floor(Math.random() * WORDS.length);
-  const wordToGuess = WORDS[randomIndex];
+  const randomTopic = Math.floor(Math.random() * WORDS.length);
+  const randomWord = Math.floor(Math.random() * WORDS[randomTopic].words.length);
+  const wordToGuess = WORDS[randomTopic].words[randomWord];
   sessionStorage.setItem("word", wordToGuess);
+
+  document.getElementById("logo").insertAdjacentHTML("afterend", `
+      <h3 id="topic-name" class="font-medium pt-5">TOPIC: ${WORDS[randomTopic].name.toUpperCase()}</h3>
+    `)
 
   gameDiv.innerHTML = createPlaceHolderHTML();
 
